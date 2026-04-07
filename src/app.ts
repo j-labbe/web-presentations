@@ -1,5 +1,5 @@
 import { existsSync } from 'node:fs';
-import { join, resolve } from 'node:path';
+import { basename, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import Fastify from 'fastify';
 import helmet from '@fastify/helmet';
@@ -110,8 +110,15 @@ export function buildApp(
         registerPresentationRoutes(presentationApp, service, config);
     });
 
-    // Serve frontend static files and SPA fallback
-    const frontendDir = resolve(__dirname, '..', 'dist', 'frontend');
+    // Serve frontend static files and SPA fallback.
+    // __dirname is `src` when running via tsx, or `dist/src` when running compiled output;
+    // Vite always emits to `<project>/dist/frontend`.
+    const parentDir = resolve(__dirname, '..');
+    const projectRoot =
+        basename(parentDir) === 'dist'
+            ? resolve(__dirname, '..', '..')
+            : parentDir;
+    const frontendDir = resolve(projectRoot, 'dist', 'frontend');
 
     if (existsSync(frontendDir)) {
         app.register(async function staticPlugin(staticApp) {
