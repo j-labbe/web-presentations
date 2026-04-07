@@ -1,0 +1,9 @@
+node_modules
+dist
+.env
+coverage
+*.log
+*.db
+*.db-journal
+storage
+test-integration-assets
