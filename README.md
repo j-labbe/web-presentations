@@ -68,8 +68,10 @@ Use single quotes around `UPLOAD_PRINCIPALS` in the shell so `$` in the Argon2 h
    `UPLOAD_PRINCIPALS`:
 
     ```bash
-    node --input-type=module -e "import argon2 from 'argon2'; const password = process.argv[1]; if (!password) throw new Error('password required'); console.log(await argon2.hash(password));" "upload-pass-123"
+    npm run genpass -- your-plain-password
     ```
+
+    The `--` separates npm’s arguments from the password (required if the password contains flags).
 
 6. Start the service:
 

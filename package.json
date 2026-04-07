@@ -13,6 +13,7 @@
         "start": "node dist/src/server.js",
         "db:sync": "prisma db push --skip-generate",
         "prisma:generate": "prisma generate",
+        "genpass": "node scripts/genpass.mjs",
         "prettier:check": "prettier --check .",
         "prettier:fix": "prettier --write ."
     },
