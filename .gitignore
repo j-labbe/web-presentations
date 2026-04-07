@@ -5,5 +5,5 @@ coverage
 *.log
 *.db
 *.db-journal
-storage
+/storage
 test-integration-assets

@@ -9,7 +9,8 @@ coverage
 *.log
 *.db
 *.db-journal
-storage
+# Only the runtime asset dir at repo root — plain "storage" would exclude src/presentations/storage/
+/storage
 test-integration-assets
 .cursor
 *.md
